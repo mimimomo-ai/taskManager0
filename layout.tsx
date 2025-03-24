@@ -4,8 +4,8 @@ import "./globals.css";
 import ClientLayout from "./Components/ClientLayout"; // Import Client Component
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider";
-import { ClerkProvider } from "@clerk/nextjs";
-import Sidebar from "./Components/Sidebar/Sidebar";
+import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+  {...({ devMode: true } as any)}
+>
       <html lang="en">
         <head>
           <link
@@ -43,7 +45,9 @@ export default function RootLayout({
           <ContextProvider>
             <GlobalStyleProvider>
               <ClientLayout>
+                <ClerkLoaded> 
                 <div className = "w-full">{children}</div>
+                </ClerkLoaded>
               </ClientLayout> 
             </GlobalStyleProvider>
           </ContextProvider>

@@ -1,7 +1,6 @@
-"use client"
-import { SignUp } from '@clerk/nextjs';
+import Image from "next/image"
+import Tasks from "./Components/Tasks/Tasks"
 
-
-export default function Page() {
-  return <SignUp />
+export default function Home() {
+  return <main><Tasks /></main>
 }
